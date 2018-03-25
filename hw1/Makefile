@@ -11,7 +11,7 @@ $(OBJECTS): $(SRC)
 	$(CC) $(CFLAGS) -c $? 
 
 test: $(PROG)
-	@echo "$(shell read -p "Give a word: " word; ./$(PROG) $word)"
+	@echo "$(shell read -p "Give a word: " word; ./$(PROG) $$word)"
 
 clean:
 	rm -f $(PROG) $(OBJECTS)
