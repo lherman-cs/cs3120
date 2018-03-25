@@ -61,8 +61,8 @@ int main(int argc, char **argv)
 {
     assert(argc == 2);
 
-    printf("%d\n", divide_and_conquer(argv[1], 0, strlen(argv[1]) - 1));
-    // printf("%d\n", dynamic_programming(argv[1]));
+    // printf("%d\n", divide_and_conquer(argv[1], 0, strlen(argv[1]) - 1));
+    printf("The minimum of number of palindromes is %d\n", dynamic_programming(argv[1]));
 
     return 0;
 }
