@@ -19,9 +19,6 @@ int is_palindrome(char *s, int l, int r)
 
 int divide_and_conquer(char *s, int i, int j)
 {
-    if (*s == '\0')
-        return 0;
-
     if (i == j || is_palindrome(s, i, j))
         return 1;
 
