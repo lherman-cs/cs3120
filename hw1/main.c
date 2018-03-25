@@ -3,11 +3,7 @@
 #include <assert.h>
 #include <limits.h>
 #include <stdlib.h>
-
-int min(int a, int b)
-{
-    return a < b ? a : b;
-}
+#define min(a, b) a < b ? a : b
 
 int is_palindrome(char *s, int l, int r)
 {
