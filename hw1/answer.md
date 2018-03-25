@@ -56,7 +56,7 @@ MinPal(s, i, j)
 
    * When $n \ge 2$, there are two cases:
      1. *s* is a palindrome
-        * If this is the case, it's not necessary to search further because we are positive that further search will not reveal a smaller number of palindromes which when concatenated construct *s* 
+        * If this is the case, it's not necessary to search further because we are certain that further search will not reveal a smaller number of palindrome. This took O(n) running time because we looked at all of the letters to determine that it is a palindrome. 
      2. *s* is not a palindrome
         * $\exist$ two substrings which when concatenated construct *s*. The two substrings can be found between the $k^{th}$ and $(k + 1)^{st}$ indices for any $k = 1, 2, ..., n - 1$. Therefore, we obtain the recurrence:
 
@@ -70,15 +70,9 @@ MinPal(s, i, j)
 
      ​
 
-   * $\sum\limits_{k = 1}^{n - 1} P(k) P(n - k)$ satisfies the recurrence relations of the Catalan numbers. Since Catalan numbers' growth is lower bounded by $\Omega(2^n)$(http://mathworld.wolfram.com/CatalanNumber.html), the extra term $n$ in $n + \sum\limits_{k = 1}^{n - 1} P(k) P(n - k)$ will not make it slower than the lower bound. Therefore, the running time complexity for this algorithm is still lower bounded by an exponential running time, $\Omega(2^n)$
+   * $\sum\limits_{k = 1}^{n - 1} P(k) P(n - k)$ satisfies the recurrence relations of the Catalan numbers. Since Catalan numbers' growth is lower bounded by $\Omega(2^n)$[^1] (see also [^2] [^3]), the extra term $n$ in $n + \sum\limits_{k = 1}^{n - 1} P(k) P(n - k)$ is less than the $\Omega(2^n)$ so, it is negligible. Therefore, the running time complexity for this algorithm is still lower bounded by an exponential running time, $\Omega(2^n)$ 
 
-$$
-P(n) =
-	\begin{cases}
-		1 & \text{if } n = 1 \\
-		n + \sum\limits_{k = 1}^{n - 1} P(k) P(n - k) & \text{if }n \ge 2
-	\end{cases}
-$$
+
 
 3. Design a Dynamic Programming $O(n^3)$ algorithm to solve the problem (show that your algorithm is $O(n^3)$; write a program to implement and show experimental results.
 
@@ -138,19 +132,19 @@ $$
 
    **Running Time Complexity:**
 
+
    * Let $n$ to be the length of $s$
-
-
    * Initialization and set base case (assume calloc's running time is $O(n)$): $O(n^2)$
+     * In this case, it doesn't affect the overall running time whether calloc is $O(1)$ or $O(n)$ because the core algorithm is $O(n^3)$. 
    * The core algorithm: $O(n^3)$
      * The first for-loop (line 26): $O(n)$
        * The second for-loop (line 28): $O(n)$
-         * The call "is_palindrome": $O(n)$
+         * The call "is_palindrome" (line 32): $O(n)$
          * The third for-loop (line 35): $O(n)$
 
    **Total running time of min_pal(s) is $O(n^3)$**
 
-   ​
+   
 
 **Experiment 1:**
 
@@ -171,3 +165,9 @@ $$
 **Experiment 5:**
 
 ![52201249330](assets/1522012493303.png)
+
+
+
+[^1]: Srimani 3120 Spring 2018 DP_3120_4_F18.pdf page 7
+[^2]: http://mathworld.wolfram.com/CatalanNumber.html Catalan Number Overview
+[^3]: https://en.wikipedia.org/wiki/Catalan_number#Properties Catalan Number Running time
