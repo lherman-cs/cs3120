@@ -9,7 +9,7 @@ int min(int a, int b)
     return a < b ? a : b;
 }
 
-int is_anagram(char *s, int l, int r)
+int is_palindrome(char *s, int l, int r)
 {
     while (l < r)
         if (s[l++] != s[r--])
@@ -22,7 +22,7 @@ int divide_and_conquer(char *s, int i, int j)
     if (*s == '\0')
         return 0;
 
-    if (i == j || is_anagram(s, i, j))
+    if (i == j || is_palindrome(s, i, j))
         return 1;
 
     int m = INT_MAX;
@@ -48,7 +48,7 @@ int dynamic_programming(char *s)
         {
             int j = i + l - 1;
             mem[i][j] = INT_MAX;
-            if (is_anagram(s, i, j))
+            if (is_palindrome(s, i, j))
                 mem[i][j] = 1;
             else
                 for (int k = i; k < j; k++)
